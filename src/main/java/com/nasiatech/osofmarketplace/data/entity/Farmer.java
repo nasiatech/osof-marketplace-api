@@ -1,1 +1,10 @@
-public class Farmer{private Integer id;}
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Farmer{
+    @Id
+    private Integer id;
+}
