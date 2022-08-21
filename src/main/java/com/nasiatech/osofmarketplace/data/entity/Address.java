@@ -2,6 +2,7 @@ package com.nasiatech.osofmarketplace.data.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,4 +18,9 @@ import lombok.Setter;
 public class Address {
     @Id
     private Integer id;
+
+
+    @OneToOne(mappedBy = "address", orphanRemoval = true)
+    private User user;
+
 }
