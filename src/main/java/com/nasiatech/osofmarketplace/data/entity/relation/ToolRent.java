@@ -1,8 +1,7 @@
 package com.nasiatech.osofmarketplace.data.entity.relation;
 
-import com.nasiatech.osofmarketplace.data.entity.Consumer;
-import com.nasiatech.osofmarketplace.data.entity.Product;
-import jakarta.persistence.Embeddable;
+import com.nasiatech.osofmarketplace.data.entity.Farmer;
+import com.nasiatech.osofmarketplace.data.entity.Tool;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -24,33 +23,30 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity @Table(name = "osof_product_purchase")
-public class ProductPurchase {
+@Entity @Table(name = "osof_tool_rent")
+public class ToolRent {
     @EmbeddedId
-    private ProductPurchaseKey key;
+    private ToolRentKey key;
 
-    @MapsId("productId")
+    @MapsId("toolId")
     @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
+    @JoinColumn(name = "tool_id", nullable = false)
+    private Tool tool;
 
-    @MapsId("consumerId")
+    @MapsId("farmerId")
     @ManyToOne(optional = false)
-    @JoinColumn(name = "consumer_id", nullable = false)
-    private Consumer consumer;
+    @JoinColumn(name = "farmer_id", nullable = false)
+    private Farmer farmer;
 
     @Getter
     @Setter
     @EqualsAndHashCode
     @NoArgsConstructor
     @AllArgsConstructor
-    @Embeddable
-    public static class ProductPurchaseKey implements Serializable {
+    static class ToolRentKey implements Serializable {
         @Serial
-        private static final long serialVersionUID = 7944434424415555137L;
-        private Integer productId;
-        private Integer consumerId;
+        private static final long serialVersionUID = -1666079733964533222L;
+        private Integer toolId;
+        private Integer farmerId;
     }
-
 }
-

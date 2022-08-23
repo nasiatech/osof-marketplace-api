@@ -1,9 +1,11 @@
 package com.nasiatech.osofmarketplace.data.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -14,24 +16,27 @@ import lombok.Setter;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity @Table(name = "osof_address")
-public class Address {
+@Entity @Table(name = "osof_cart")
+public class Cart {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String name;
-    private String latitude;
-    private String longitude;
-    private String town;
-    private String city;
-    private String region;
-    private String country;
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-    @OneToOne(optional = false)
+
+
+    @OneToMany()
+    @JoinColumn(name = "cart_id")
+    private Set<Product> products = new LinkedHashSet<>();
+
+    @OneToOne(optional = false, orphanRemoval = true)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

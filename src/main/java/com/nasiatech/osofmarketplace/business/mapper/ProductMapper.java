@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ProductMapper {
-    @Mapping(source = "farmId", target = "farm.id")
+    @Mapping(source = "farmerId", target = "farmer.id")
     Product productDtoToProduct(ProductDto productDto);
 
-    @Mapping(source = "farm.id", target = "farmId")
+    @Mapping(source = "farmer.id", target = "farmerId")
     ProductDto productToProductDto(Product product);
 
-    @Mapping(source = "farmId", target = "farm.id")
+    @Mapping(source = "farmerId", target = "farmer.id")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Product updateProductFromProductDto(ProductDto productDto, @MappingTarget Product product);
 
